@@ -62,7 +62,7 @@ const FloatingVideo = () => {
 
         <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl">
           <AnimatedTitle
-            title="Why <b>I</b> BECAME <br /> A DEVELO<b>P</b>ER"
+            title=" The Story Why <b>I</b> BECAME <br /> A DEVELO<b>P</b>ER"
             containerClass="mt-5 pointer-events-none mix-blend-difference relative z-10 text-center"
           />
 
@@ -102,11 +102,18 @@ const FloatingVideo = () => {
         <div className="mt-4 flex w-full flex-col items-center sm:mt-6 md:mt-8 lg:mt-10">
           {" "}
           {/* Reduced margin-top */}
-          <p className="max-w-sm px-4 text-center font-circular-web text-violet-50 md:text-start md:px-0">
-            Bcoz, Being nothing my loved once left me.. does that make me
-            developer No! I came from long way to to show me who I am some
-            thoughts deeply hit me to Be Developer.
-          </p>
+          <p className="w-full px-6 text-center font-circular-web text-violet-50 md:text-start md:px-8 overflow-auto">
+  You see, life had its dramatic plot twists. One day, my loved ones left me. Why? Because I was... well, let's just say, "being nothing" isn't a great personality trait. 😅
+
+  But did that make me a developer? Nope, not even close! I mean, who becomes a developer by just sitting around doing nothing? So, I took a long, hard look at myself (and my empty wallet), and something clicked.
+
+  Somewhere between existential crises and binge-watching cat videos, I realized I had to change. That’s when the thought hit me—"Why not code my way out of this mess?" So here I am, smashing bugs, building apps, and occasionally crying over semicolons.
+
+  And you know what? Being a developer isn’t just a job; it’s my revenge arc. 💻✨
+</p>
+
+
+
         </div>
       </div>
     </div>

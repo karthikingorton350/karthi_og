@@ -8,7 +8,6 @@ const navItems = ["Resume", "About", "Contact"];
 
 const NavBar = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isIndicatorActive, setIsIndicatorActive] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
 
   const audioElementRef = useRef(null);
@@ -19,7 +18,6 @@ const NavBar = () => {
 
   const toggleAudioIndicator = () => {
     setIsAudioPlaying((prev) => !prev);
-    setIsIndicatorActive((prev) => !prev);
   };
 
   const toggleMobileMenu = () => {
@@ -73,7 +71,9 @@ const NavBar = () => {
               {navItems.map((item, index) => (
                 <a
                   key={index}
-                  href={item === "Resume" ? "/resume" : `/#${item.toLowerCase()}`}
+                  href={
+                    item === "Resume" ? "/resume" : `/#${item.toLowerCase()}`
+                  }
                   className="nav-hover-btn"
                 >
                   {item}
@@ -82,28 +82,48 @@ const NavBar = () => {
             </div>
 
             {/* Audio Button */}
-            <button
-              onClick={toggleAudioIndicator}
-              className="ml-10 flex items-center space-x-0.5"
-            >
-              <audio
-                ref={audioElementRef}
-                className="hidden"
-                src="/audio/loop.mp3"
-                loop
-              />
-              {[1, 2, 3, 4].map((bar) => (
-                <div
-                  key={bar}
-                  className={clsx("indicator-line", {
-                    active: isIndicatorActive,
-                  })}
-                  style={{
-                    animationDelay: `${bar * 0.1}s`,
-                  }}
+            <div className="relative ml-10">
+              <button
+                onClick={toggleAudioIndicator}
+                className="relative z-10 flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full text-white shadow-lg"
+                title={isAudioPlaying ? "Pause Audio" : "Play Audio"} // Tooltip
+              >
+                <audio
+                  ref={audioElementRef}
+                  className="hidden"
+                  src="/audio/loop.mp3"
+                  loop
                 />
-              ))}
-            </button>
+                {isAudioPlaying ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M6 4h4v16H6zm8 0h4v16h-4z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                )}
+              </button>
+
+              {/* Wave Effect */}
+              {isAudioPlaying && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="absolute w-14 h-14 bg-blue-500 opacity-30 rounded-full animate-ping" />
+                  <span className="absolute w-20 h-20 bg-blue-400 opacity-20 rounded-full animate-ping" />
+                  <span className="absolute w-28 h-28 bg-blue-300 opacity-10 rounded-full animate-ping" />
+                </div>
+              )}
+            </div>
 
             {/* Mobile Hamburger Menu */}
             <div className="md:hidden ml-4">
@@ -120,11 +140,15 @@ const NavBar = () => {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="absolute top-16 left-0 w-full bg-transparent text-white py-4 md:hidden">
-            <div className="flex flex-col items-end space-y-4"> {/* Align text to the right */}
+            <div className="flex flex-col items-end space-y-4">
+              {" "}
+              {/* Align text to the right */}
               {navItems.map((item, index) => (
                 <a
                   key={index}
-                  href={item === "Resume" ? "/resume" : `/#${item.toLowerCase()}`}
+                  href={
+                    item === "Resume" ? "/resume" : `/#${item.toLowerCase()}`
+                  }
                   className="text-xl hover:text-blue-400 transition duration-200"
                   onClick={toggleMobileMenu} // Close the menu when clicking a link
                 >
